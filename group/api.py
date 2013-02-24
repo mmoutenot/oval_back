@@ -21,6 +21,10 @@ class ApiKeyOrSessionAuthentication(ApiKeyAuthentication):
             return object_list.filter(users.contains(request.user))
 
 class GroupResource(ModelResource):
+
+    def determine_format(self, request):
+      return 'application/json'
+
     class Meta:
         authentication = ApiKeyOrSessionAuthentication()
         authorization = DjangoAuthorization()

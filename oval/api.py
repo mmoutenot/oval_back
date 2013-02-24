@@ -17,6 +17,10 @@ class ApiKeyOrSessionAuthentication(ApiKeyAuthentication):
     return super(ApiKeyOrSessionAuthentication, self).get_identifier(request)
 
 class UserResource(ModelResource):
+
+    def determine_format(self, request):
+      return 'application/json'
+
     class Meta:
         authentication = ApiKeyOrSessionAuthentication()
         authorization = DjangoAuthorization()
